@@ -1,12 +1,21 @@
-version: "3.8"
+version: "3.9"
+
 services:
-  app:
+  django-studio:
     build: .
+    command: python manage.py runserver 0.0.0.0:8000
     volumes:
-      - .:/django
+      - .:/django-studio
     ports:
       - 8000:8000
-    image: app:django
-    container_name: django_container
-    command: python manage.py runserver 0.0.0.0:8000
-    
+    depends_on:
+      - db
+  db:
+    image: postgres:13
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - "POSTGRES_HOST_AUTH_METHOD=trust"
+
+volumes:
+  postgres_data:
