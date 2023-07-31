@@ -1,3 +1,10 @@
 h1 {
     color: blue;
 }
+
+.main-btn {
+    background-color: black;
+    color: white;
+    padding: 15px 25px;
+    text-decoration: none;
+  }
